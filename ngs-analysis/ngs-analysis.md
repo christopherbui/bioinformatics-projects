@@ -1,10 +1,23 @@
 # Next Generation Sequencing Analysis Project
 
-Sequence Read Achve (SRA) is the largest publicly available respository of high throughput sequencing data.
+Here we demonstrate automating a traditional next generation sequencing anlaysis pipeline using Python. The steps for NGS analysis are shown in the table below.
+
+| **Step**           | **Description**                            | **Tools**             |
+| ------------------ | ------------------------------------------ | --------------------- |
+| 1. Download Data   | Fetch raw sequencing data                  | SRA Toolkit, Python   |
+| 2. Quality Control | Assess data quality                        | FastQC                |
+| 3. Preprocessing   | Trim adapters and filter low-quality reads | Trimmomatic, Cutadapt |
+| 4. Alignment       | Align reads to a reference genome          | BWA, Bowtie2          |
+| 5. BAM Processing  | Convert, sort, and index BAM files         | Samtools              |
+| 6. Variant Calling | Identify SNPs and indels                   | FreeBayes, GATK       |
+| 7. Annotation      | Add biological context to variants         | ANNOVAR, SnpEff       |
+| 8. Visualization   | Visualize and generate reports             | Pandas, Matplotlib    |
 
 
 
 # Data
+
+Sequence Read Achve (SRA) is the largest publicly available respository of high throughput sequencing data.
 
 Sequence data can be downlaoded from:
 
@@ -166,39 +179,36 @@ Below are the steps that make up an NGS analysis pipeline:
 
    
 
-   During alignment, **BWA** uses these index files to:
+​	During alignment, **BWA** uses these index files to:
 
    1. **Search the genome quickly**: The **BWT** and **suffix array** help BWA search through the reference without scanning every base.
+
    2. **Identify regions to align reads**: The **packed sequence** and **ambiguity information** ensure that all bases in the genome (including ambiguous ones) are handled correctly.
+
    3. **Ensure fast access to specific sequences**: Tools like **SAMtools** can use the `.fai` index to quickly access specific parts of the genome.
+
+      Alignment output: **Sequence Alignment Map** (SAM)
+
+      Usuallly convert SAM to BAM (binary alignment map) for faster storage and lookup.
 
 
 
 5. Convert SAM to BAM and Sort
+
 6. Variant Calling
+
+   - Identifies genomic variants (SNPs, insertions, deletions) by comparing aligned reads to reference genome.
+
+   **Tools**: 
+
+   - GATK: large, complex genomes (i.e. humans, mammals)
+     - BaseRecalibrator, HaplotypeCaller
+   - FreeBayes: small genomes; diploi & non-diploid organisms
+   - bcftools: lightweight and fast, ideal for bacterial genomes
+     - Integrates well with SAMtools for variant calling and filtering
+
 7. Annotation
+
+   Some background: https://www.futurelearn.com/info/courses/making-sense-of-genomic-data-covid-19-web-based-bioinformatics/0/steps/319530
+
 8. Visualization & reporting
-
-
-
-
-
-
-
-## Notes
-
-- interpreting fastq files
-
-- how reads are generated in NGS
-- sanger sequencing
-
-| **Step**           | **Description**                            | **Tools**             |
-| ------------------ | ------------------------------------------ | --------------------- |
-| 1. Download Data   | Fetch raw sequencing data                  | SRA Toolkit, Python   |
-| 2. Quality Control | Assess data quality                        | FastQC                |
-| 3. Preprocessing   | Trim adapters and filter low-quality reads | Trimmomatic, Cutadapt |
-| 4. Alignment       | Align reads to a reference genome          | BWA, Bowtie2          |
-| 5. BAM Processing  | Convert, sort, and index BAM files         | Samtools              |
-| 6. Variant Calling | Identify SNPs and indels                   | FreeBayes, GATK       |
-| 7. Annotation      | Add biological context to variants         | ANNOVAR, SnpEff       |
-| 8. Visualization   | Visualize and generate reports             | Pandas, Matplotlib    |

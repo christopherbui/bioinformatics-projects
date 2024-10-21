@@ -2,3 +2,5 @@
 *.fastq
 *.sra
 *.zip
+*.sam
+*.bam
