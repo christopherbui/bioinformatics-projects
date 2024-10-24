@@ -1,4 +1,4 @@
-# Welcome to My Bioinformatics Projects Page
+# Bioinformatics Projects
 
 Welcome to my Bioinformatics Projects page!  
 Here, I showcase a variety of computational biology projects to address interesting and practical problems.
