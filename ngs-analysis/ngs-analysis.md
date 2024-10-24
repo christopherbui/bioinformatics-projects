@@ -65,7 +65,7 @@ There are two types of accession numbers that one might see on NCBI's SRA databa
 
 It is common to see file extensions such as FASTQ or FASTA. Both contain nucleotide sequences, but FASTQ contains quality score for each base in the same file.
 
-**Quality score** represented certain ASCII characters:
+**Quality score** represented by certain ASCII characters:
 
 `!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 
@@ -77,7 +77,7 @@ Traditionally, long sequences are split into multiple reads (each read is 4 line
 
 Today, Illumina's software than can do high quality short-reads (~100 base pairs), so every 4 lines in a FASTQ file is a read with information for a 100 fragment of the larger sequence.
 
-Example for 1 read iin FASTQ file
+Example for 1 read in FASTQ file
 
 > ```
 > @HISEQ:402:H147CADXX:1:1101:1250:2208 1:N:0:CGATGT TGATGCTGCNAATTTTATTCAGTCAGCGGAGGGGGCTTACGTGTATTTTCTGCAACCTTT
